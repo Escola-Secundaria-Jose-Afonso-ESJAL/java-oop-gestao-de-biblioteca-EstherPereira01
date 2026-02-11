@@ -8,17 +8,40 @@ public class Biblioteca {
 
     public Biblioteca() {
         this.livros = new ArrayList<>();
+
     }
 
     public boolean adicionarLivro(Livro livro) {
+        for(Livro ltemp : livros) {
+            
+            if(livros.size() >= this.MAX_LIVROS) {
+                return false;
+            }
+            
+            if(ltemp.getTitulo() == livro.getTitulo()) {
+                return false;
+            }
+        }
         
+        livros.add(livro);
+        return true;
     }
 
     public boolean removerLivro(String titulo) {
+        for(Livro ltemp : livros) {
+            if( ltemp.getTitulo() == titulo){
+                livros.remove(ltemp);
+                return true;
+            }
+        } 
+        
+        return false;
         
     }
 
     public void listarLivros() {
-        
+        for(Livro livro : livros) {
+            System.out.println("Título: " + livro.getTitulo() + "\nAutor: " + livro.getAutor() + "\nAno de lançamento: " + livro.getAno());
+        }
     }
 }
